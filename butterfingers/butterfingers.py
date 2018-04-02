@@ -44,10 +44,13 @@ def butterfinger(text,prob=0.1,keyboard='querty'):
 	buttertext = ""
 	for letter in text:
 		lcletter = letter.lower()
-		if random.choice(range(0, 100)) <= probOfTypo:
-			newletter = random.choice(keyApprox[lcletter])
-		else:
+		if not lcletter in keyApprox.keys():
 			newletter = lcletter
+		else:
+			if random.choice(range(0, 100)) <= probOfTypo:
+				newletter = random.choice(keyApprox[lcletter])
+			else:
+				newletter = lcletter
 		# go back to original case
 		if not lcletter == letter:
 			newletter = newletter.upper()
